@@ -1,0 +1,5 @@
+---
+- name: update distro packages
+  package:
+    name: "*"
+    state: latest
