@@ -4,4 +4,4 @@
   tasks:
     - name: "Include update"
       include_role:
-        name: "update"
+        name: gotmax23.update
