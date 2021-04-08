@@ -13,10 +13,17 @@
       register: upgradeable_packages
 
     - name: Print upgradeable_packages
-      set_fact: 
+      set_fact:
         upgradeable_packages_available: true
       when: (ansible_pkg_mgr in ["yum", "dnf"] and "Available Upgrades" in upgradeable_packages.stdout_lines) or
-            (ansible_pkg_mgr == "apt" and upgradeable_packages.stdout_lines[1] is defined)
-            (ansible_pkg_mgr == "pacman" and upgradeable_packages.stdout_lines is defined)
-            (ansible_pkg_mgr == "zypper" and "No updates found." not in upgradeable_packages.stdout_lines)
+            (ansible_pkg_mgr == "apt" and upgradeable_packages.stdout_lines[1] is defined) or
+            (ansible_pkg_mgr == "pacman" and upgradeable_packages.stdout_lines is defined) or
+            (ansible_pkg_mgr == "zypper" and "No updates found." not in upgradeable_packages.stdout_lines) or
             (ansible_pkg_mgr == "apk" and upgradeable_packages.stdout_lines[1] is defined)
+  when: mode in ["full", "check"]
+
+- name: update all packages
+  package:
+    name: "*"
+    state: latest
+  when: mode in ["full", "run"]
