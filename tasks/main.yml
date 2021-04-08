@@ -1,2 +1,22 @@
 ---
 # tasks file for update
+- name: update package cache
+  package:
+    update_cache: true
+
+- name: Check for updates
+  block:
+    - name: List upgradeable packages
+      command:
+        cmd: "{{ update_list_upgradeable_packages_cmd }}"
+        warn: false
+      register: upgradeable_packages
+
+    - name: Print upgradeable_packages
+      set_fact: 
+        upgradeable_packages_available: true
+      when: (ansible_pkg_mgr in ["yum", "dnf"] and "Available Upgrades" in upgradeable_packages.stdout_lines) or
+            (ansible_pkg_mgr == "apt" and upgradeable_packages.stdout_lines[1] is defined)
+            (ansible_pkg_mgr == "pacman" and upgradeable_packages.stdout_lines is defined)
+            (ansible_pkg_mgr == "zypper" and "No updates found." not in upgradeable_packages.stdout_lines)
+            (ansible_pkg_mgr == "apk" and upgradeable_packages.stdout_lines[1] is defined)
