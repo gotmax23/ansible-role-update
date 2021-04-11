@@ -7,4 +7,4 @@ _update_list_upgradeable_packages_cmd:
   pacman: pacman -Qu
   zypper: zypper list-updates
   apk: apk upgrade --simulate
-update_list_upgradeable_packages_cmd: "{{ _update_list_upgradeable_packages_cmd[ansible_pkg_mgr]"
+update_list_upgradeable_packages_cmd: "{{ _update_list_upgradeable_packages_cmd[ansible_pkg_mgr] }}"
