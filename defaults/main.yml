@@ -3,4 +3,4 @@
 
 # Options: `check` to only print available updates | `full` to both print upgradeable packages and then upgrade them 
 # | `run` to update all packages without listing them first
-mode: run
+mode: full
