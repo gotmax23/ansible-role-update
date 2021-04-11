@@ -13,8 +13,8 @@
       register: upgradeable_packages
 
     - name: Print upgradeable_packages
-      set_fact:
-        upgradeable_packages_available: true
+      debug:
+        msg: "{{ upgradeable_packages['stdout_lines'] | to_nice_json }}"
       when: (ansible_pkg_mgr in ["yum", "dnf"] and "Available Upgrades" in upgradeable_packages.stdout_lines) or
             (ansible_pkg_mgr == "apt" and upgradeable_packages.stdout_lines[1] is defined) or
             (ansible_pkg_mgr == "pacman" and upgradeable_packages.stdout_lines is defined) or
