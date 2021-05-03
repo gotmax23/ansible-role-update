@@ -3,6 +3,7 @@
 - name: update package cache
   package:
     update_cache: true
+  changed_when: false
 
 - name: Check for updates
   block:
@@ -16,7 +17,7 @@
     - name: Print upgradeable_packages
       debug:
         msg: "{{ upgradeable_packages['stdout_lines'] | to_nice_json }}"
-      changed_when: false
+      changed_when: true
       when: (ansible_pkg_mgr in ["yum", "dnf"] and "Available Upgrades" in upgradeable_packages.stdout_lines) or
             (ansible_pkg_mgr == "apt" and upgradeable_packages.stdout_lines[1] is defined) or
             (ansible_pkg_mgr == "pacman" and upgradeable_packages.stdout_lines is defined) or
