@@ -1,0 +1,21 @@
+---
+#
+# Ansible managed
+#
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+    requirements-file: requirements.yml
+    force: "${MOLECULE_FORCE:-true}"
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+driver:
+  name: podman
+platforms:
+  - name: "update-${MOLECULE_IMAGE:-debian}-${MOLECULE_TAG:-buster}${TOX_ENVNAME}"
+    image: "quay.io/gotmax23/${MOLECULE_IMAGE:-debian}-systemd:${MOLECULE_TAG:-buster}"
+    command: ""
+    pre_build_image: true
