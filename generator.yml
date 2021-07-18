@@ -5,3 +5,5 @@
 
   roles:
     - gotmax23.generator
+
+# vim: set filetype=yaml.ansible:
