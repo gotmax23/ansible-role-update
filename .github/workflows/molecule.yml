@@ -27,7 +27,9 @@ jobs:
         run: pip install molecule molecule-podman yamllint ansible-lint
 
       - name: Run molecule lint
-        run: molecule lint -s single
+        run: | 
+          pwd 
+          molecule lint -s single
 
   test:
     runs-on: ubuntu-20.04
