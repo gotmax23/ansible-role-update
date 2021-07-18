@@ -1,0 +1,85 @@
+---
+name: Run Molecule tests and linting
+
+'on':
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "10 1 * * 0"
+
+job:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Git Repo
+        uses: actions/checkout@v2
+
+      - name: "Set up Python 3.9"
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Install pip packages
+        run: pip install molecule yamllint ansible-lint
+
+      - name: Run molecule lint
+        run: molecule lint -s single
+
+  test:
+    runs-on: ubuntu-20.04
+    needs:
+      - lint
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - image: "quay.io/gotmax23/archlinux-systemd"
+            tag: "any"
+          - image: "quay.io/gotmax23/debian-systemd"
+            tag: "buster"
+          - image: "quay.io/gotmax23/debian-systemd"
+            tag: "bullseye"
+          - image: "quay.io/gotmax23/el-systemd"
+            tag: "7"
+          - image: "quay.io/gotmax23/el-systemd"
+            tag: "8"
+          - image: "quay.io/gotmax23/fedora-systemd"
+            tag: "33"
+          - image: "quay.io/gotmax23/fedora-systemd"
+            tag: "34"
+          - image: "quay.io/gotmax23/fedora-systemd"
+            tag: "35"
+          - image: "quay.io/gotmax23/opensuse-systemd"
+            tag: "15.2"
+          - image: "quay.io/gotmax23/opensuse-systemd"
+            tag: "15.3"
+          - image: "quay.io/gotmax23/opensuse-systemd"
+            tag: "tumbleweed"
+          - image: "quay.io/gotmax23/ubuntu-systemd"
+            tag: "bionic"
+          - image: "quay.io/gotmax23/ubuntu-systemd"
+            tag: "focal"
+          - image: "quay.io/gotmax23/ubuntu-systemd"
+            tag: "hirsute"
+    steps:
+      - name: Checkout Git Repo
+        uses: actions/checkout@v2
+
+      - name: "Set up Python 3.9"
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Install pip packages
+        run: pip install molecule molecule-podman ansible
+
+      - name: Run molecule test
+        run: molecule test -s single
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
+
+          MOLECULE_IMAGE: "${{ matrix.os.image }}"
+          MOLECULE_TAG: "${{ matrix.os.tag }}"
+

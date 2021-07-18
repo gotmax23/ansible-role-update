@@ -1,0 +1,76 @@
+---
+#
+# Ansible managed
+#
+---
+dependency:
+  name: galaxy
+  options:
+    force: "${MOLECULE_FORCE:-false}"
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+driver:
+  name: podman
+platforms:
+  - name: "update-archlinux-any"
+    image: "quay.io/gotmax23/archlinux-systemd:any"
+    command: ""
+    pre_build_image: true
+  - name: "update-debian-buster"
+    image: "quay.io/gotmax23/debian-systemd:buster"
+    command: ""
+    pre_build_image: true
+  - name: "update-debian-bullseye"
+    image: "quay.io/gotmax23/debian-systemd:bullseye"
+    command: ""
+    pre_build_image: true
+  - name: "update-el-8"
+    image: "quay.io/gotmax23/el-systemd:8"
+    command: ""
+    pre_build_image: true
+  - name: "update-fedora-33"
+    image: "quay.io/gotmax23/fedora-systemd:33"
+    command: ""
+    pre_build_image: true
+  - name: "update-fedora-34"
+    image: "quay.io/gotmax23/fedora-systemd:34"
+    command: ""
+    pre_build_image: true
+  - name: "update-fedora-35"
+    image: "quay.io/gotmax23/fedora-systemd:35"
+    command: ""
+    pre_build_image: true
+  - name: "update-opensuse-15.2"
+    image: "quay.io/gotmax23/opensuse-systemd:15.2"
+    command: ""
+    pre_build_image: true
+  - name: "update-opensuse-15.3"
+    image: "quay.io/gotmax23/opensuse-systemd:15.3"
+    command: ""
+    pre_build_image: true
+  - name: "update-opensuse-tumbleweed"
+    image: "quay.io/gotmax23/opensuse-systemd:tumbleweed"
+    command: ""
+    pre_build_image: true
+  - name: "update-ubuntu-bionic"
+    image: "quay.io/gotmax23/ubuntu-systemd:bionic"
+    command: ""
+    pre_build_image: true
+  - name: "update-ubuntu-focal"
+    image: "quay.io/gotmax23/ubuntu-systemd:focal"
+    command: ""
+    pre_build_image: true
+  - name: "update-ubuntu-hirsute"
+    image: "quay.io/gotmax23/ubuntu-systemd:hirsute"
+    command: ""
+    pre_build_image: true
+---
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      stdout_callback: yaml
+verifier:
+  name: ansible
