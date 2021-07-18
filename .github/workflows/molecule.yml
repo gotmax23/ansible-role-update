@@ -11,12 +11,18 @@ name: Run Molecule tests and linting
   schedule:
     - cron: "10 1 * * 0"
 
+defaults:
+  run:
+    working-directory: "gotmax23.update"
+
 jobs:
   lint:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Git Repo
         uses: actions/checkout@v2
+        with:
+          path: "gotmax23.update"
 
       - name: "Set up Python 3.9"
         uses: actions/setup-python@v2
@@ -68,6 +74,8 @@ jobs:
     steps:
       - name: Checkout Git Repo
         uses: actions/checkout@v2
+        with:
+          path: "gotmax23.update"
 
       - name: "Set up Python 3.9"
         uses: actions/setup-python@v2
