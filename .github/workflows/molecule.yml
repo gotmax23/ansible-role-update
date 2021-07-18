@@ -24,13 +24,10 @@ jobs:
           python-version: "3.9"
 
       - name: Install pip packages
-        run: pip install molecule molecule-podman yamllint ansible-lint
+        run: pip install molecule molecule-podman ansible yamllint ansible-lint
 
       - name: Run molecule lint
-        run: |
-          pwd
-          ls -al
-          molecule lint -s single
+        run: molecule lint -s single
 
   test:
     runs-on: ubuntu-20.04
