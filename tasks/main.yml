@@ -31,5 +31,5 @@
 - name: update all packages
   package:
     name: "*"
-    state: latest # noqa package-latest
+    state: latest  # noqa package-latest
   when: mode in ["full", "run"]

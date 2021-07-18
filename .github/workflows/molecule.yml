@@ -85,4 +85,3 @@ jobs:
 
           MOLECULE_IMAGE: "${{ matrix.os.image }}"
           MOLECULE_TAG: "${{ matrix.os.tag }}"
-
