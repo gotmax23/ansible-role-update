@@ -1,3 +1,4 @@
+---
 galaxy_info:
   role_name: update
 
@@ -12,22 +13,30 @@ galaxy_info:
   platforms:
     - name: Archlinux
       versions:
-        - all
+        - any
     - name: Debian
       versions:
-        - all
+        - buster
+        - bullseye
     - name: EL
       versions:
-        - all
+        - 7
+        - 8
     - name: Fedora
       versions:
-        - all
+        - 33
+        - 34
+        - 35
     - name: opensuse
       versions:
-        - all
+        - 15.2
+        - 15.3
+        - tumbleweed
     - name: Ubuntu
       versions:
-        - all
+        - bionic
+        - focal
+        - hirsute
 
   galaxy_tags:
     - update
