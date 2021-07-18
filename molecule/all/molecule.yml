@@ -2,7 +2,6 @@
 #
 # Ansible managed
 #
----
 dependency:
   name: galaxy
   options:
@@ -66,7 +65,6 @@ platforms:
     image: "quay.io/gotmax23/ubuntu-systemd:hirsute"
     command: ""
     pre_build_image: true
----
 provisioner:
   name: ansible
   config_options:

@@ -2,7 +2,6 @@
 #
 # Ansible managed
 #
----
 dependency:
   name: galaxy
   options:
@@ -26,7 +25,6 @@ platforms:
       - /var/lib/journal
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
----
 provisioner:
   name: ansible
   config_options:
