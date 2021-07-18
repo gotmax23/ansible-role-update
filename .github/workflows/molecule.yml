@@ -24,7 +24,7 @@ jobs:
           python-version: "3.9"
 
       - name: Install pip packages
-        run: pip install molecule yamllint ansible-lint
+        run: pip install molecule molecule-podman yamllint ansible-lint
 
       - name: Run molecule lint
         run: molecule lint -s single
