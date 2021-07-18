@@ -11,10 +11,6 @@ name: Run Molecule tests and linting
   schedule:
     - cron: "10 1 * * 0"
 
-defaults:
-  run:
-    working-directory: "gotmax23.update"
-
 jobs:
   lint:
     runs-on: ubuntu-20.04
