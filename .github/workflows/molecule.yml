@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Checkout Git Repo
         uses: actions/checkout@v2
-        with:
-          path: "gotmax23.update"
 
       - name: "Set up Python 3.9"
         uses: actions/setup-python@v2
@@ -70,8 +68,6 @@ jobs:
     steps:
       - name: Checkout Git Repo
         uses: actions/checkout@v2
-        with:
-          path: "gotmax23.update"
 
       - name: "Set up Python 3.9"
         uses: actions/setup-python@v2
