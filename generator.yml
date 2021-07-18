@@ -1,6 +1,10 @@
+---
 - name: Test ansible-role-generator
   hosts: localhost
   gather_facts: false
 
   roles:
     - gotmax23.generator
+
+
+# vim: set filetype=yaml.ansible:
