@@ -4,6 +4,8 @@
   package:
     update_cache: true
   changed_when: false
+  when:
+    - ansible_pkg_mgr != "zypper"
 
 - name: Check for updates
   block:
@@ -12,11 +14,12 @@
         cmd: "{{ update_list_upgradeable_packages_cmd }}"
         warn: false
       changed_when: false
+      failed_when: false
       register: upgradeable_packages
 
     - name: Print upgradeable_packages
       debug:
-        msg: "{{ upgradeable_packages['stdout_lines'] | to_nice_json }}"
+        msg: "{{ upgradeable_packages['stdout'] }}"
       changed_when: true
       when: (ansible_pkg_mgr in ["yum", "dnf"] and "Available Upgrades" in upgradeable_packages.stdout_lines) or
             (ansible_pkg_mgr == "apt" and upgradeable_packages.stdout_lines[1] is defined) or
