@@ -1,4 +1,7 @@
 ---
+#
+# Ansible managed
+#
 name: Run Molecule tests and linting
 
 'on':
@@ -8,7 +11,7 @@ name: Run Molecule tests and linting
   schedule:
     - cron: "10 1 * * 0"
 
-job:
+jobs:
   lint:
     runs-on: ubuntu-20.04
     steps:
