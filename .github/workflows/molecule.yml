@@ -38,7 +38,7 @@ jobs:
 
       - name: Debug container run
         run: |
-          molecule test -s single
+          podman run -ti --name=update-fedora-34 --systemd=true quay.io/gotmax23/fedora-systemd:34
           exit 1
         env:
           PY_COLORS: "1"
