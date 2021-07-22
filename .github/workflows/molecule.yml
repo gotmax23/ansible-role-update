@@ -77,6 +77,12 @@ jobs:
       - name: Install pip packages
         run: pip install molecule molecule-podman ansible
 
+      - name: Set sysctl options
+        run: |
+          sudo sysctl -w fs.inotify.max_queued_events=2097152
+          sudo sysctl -w fs.inotify.max_user_instances=2097152
+          sudo sysctl -w fs.inotify.max_user_watches=2097152
+
       - name: Run molecule test
         run: molecule test -s single
         env:
