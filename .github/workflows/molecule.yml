@@ -26,6 +26,14 @@ jobs:
       - name: Install pip packages
         run: pip install molecule molecule-podman ansible yamllint ansible-lint
 
+      - name: Debug
+        run: |
+          ansible --version
+          podman --version
+          podman info --debug
+          molecule --version
+          exit 1
+
       - name: Run molecule lint
         run: molecule lint -s single
 
