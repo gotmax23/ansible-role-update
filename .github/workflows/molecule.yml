@@ -41,6 +41,8 @@ jobs:
           molecule test -s single
           exit 1
         env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
           MOLECULE_IMAGE: fedora
           MOLECULE_TAG: 34
 
@@ -103,6 +105,5 @@ jobs:
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
-
           MOLECULE_IMAGE: "${{ matrix.os.image }}"
           MOLECULE_TAG: "${{ matrix.os.tag }}"

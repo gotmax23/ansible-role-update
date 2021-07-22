@@ -1,0 +1,7 @@
+- name: Prepare
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Debug Github Actions
+      wait_for_connection:
