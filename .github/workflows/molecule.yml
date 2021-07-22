@@ -32,10 +32,17 @@ jobs:
           podman --version
           podman info --debug
           molecule --version
-          exit 1
 
       - name: Run molecule lint
         run: molecule lint -s single
+
+      - name: Debug container run
+        run: |
+          molecule test -s single
+          exit 1
+        env:
+          MOLECULE_IMAGE: fedora
+          MOLECULE_TAG: 34
 
   test:
     runs-on: ubuntu-20.04
