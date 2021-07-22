@@ -17,6 +17,7 @@ platforms:
     image: "quay.io/gotmax23/${MOLECULE_IMAGE:-debian}-systemd:${MOLECULE_TAG:-latest}"
     command: ""
     pre_build_image: true
+    systemd: true
 provisioner:
   name: ansible
   config_options:
