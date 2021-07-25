@@ -43,3 +43,6 @@ galaxy_info:
     - upgrade
 
 dependencies: []
+
+collections:
+  - community.general
