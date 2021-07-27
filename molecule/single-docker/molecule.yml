@@ -13,8 +13,8 @@ lint: |
 driver:
   name: docker
 platforms:
-  - name: "update-${MOLECULE_IMAGE:-debian}-${MOLECULE_TAG:-latest}${TOX_ENVNAME}"
-    image: "quay.io/gotmax23/${MOLECULE_IMAGE:-debian}-systemd:${MOLECULE_TAG:-latest}"
+  - name: "update-${image:-debian}-${tag:-latest}${TOX_ENVNAME}"
+    image: "quay.io/gotmax23/${image:-debian}-systemd:${tag:-latest}"
     command: ""
     pre_build_image: true
     tmpfs:
