@@ -21,11 +21,3 @@ update_zypper_allow_vendor_change: false
 
 # Whether to autoremove unneeded dependencies. This only applies to dnf, yum, and apt
 update_autoremove: false
-
-# Alternatively. you can override the variable above and set a seperate value for each supported package manager.
-
-# Set this option to override `update_autoremove` for yum and dnf.
-# update_dnf_autoremove: false
-
-# Set this option to override `update_autoremove` for apt.
-# update_apt_autoremove: false

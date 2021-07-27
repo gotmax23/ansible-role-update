@@ -47,8 +47,7 @@
     - name: Autoremove (dnf/yum)
       when:
         - ansible_pkg_mgr in [ "yum", "dnf" ]
-        - update_dnf_autoremove is defined and update_dnf_autoremove | bool or
-          update_dnf_autoremove is not defined and update_autoremove | bool
+        - update_autoremove | bool
       package:
         autoremove: "{{ update_dnf_autoremove | default(update_autoremove) }}"
 
@@ -60,10 +59,9 @@
     - name: Autoremove (apt)
       when:
         - ansible_pkg_mgr == "apt"
-        - update_apt_autoremove is defined and update_apt_autoremove | bool or
-          update_apt_autoremove is not defined and update_autoremove | bool
+        - update_autoremove | bool
       apt:
-        autoremove: "{{ update_apt_autoremove | default(update_autoremove) }}"
+        autoremove: "{{ update_autoremove }}"
 
     - name: Update packages (pacman)
       when: ansible_pkg_mgr == "pacman"
