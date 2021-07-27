@@ -1,6 +1,31 @@
 ---
 # defaults file for update
 
-# Options: `check` to only print available updates | `full` to both print upgradeable packages and then upgrade them
-# | `run` to update all packages without listing them first
+# Options:
+# - `check` to print upgradeable packages without upgrading them
+# - `full` to print upgradeable packages and then upgrade them
+# - `run` to update all packages without listing them first
 mode: full
+
+# This option sets the apt upgrade type. Available options are `dist`, `full`, `safe`, and `true`.
+# See the ansible.builtin.apt module documentation for more information.
+update_apt_upgrade_type: true
+
+# This options sets the state key for the zypper module.
+# Choose `latest` for a regular upgrade or `dist-upgrade` for the equivalent for `zypper dup`.
+# See the community.general.zypper module documentation for more information.
+update_zypper_state: latest
+
+# This option dictates whether zypper should allow a vendor change
+update_zypper_allow_vendor_change: false
+
+# Whether to autoremove unneeded dependencies. This only applies to dnf, yum, and apt
+update_autoremove: false
+
+# Alternatively. you can override the variable above and set a seperate value for each supported package manager.
+
+# Set this option to override `update_autoremove` for yum and dnf.
+# update_dnf_autoremove: false
+
+# Set this option to override `update_autoremove` for apt.
+# update_apt_autoremove: false

@@ -1,11 +1,18 @@
 ---
 # tasks file for update
-- name: update package cache
+- name: Update package cache
   package:
     update_cache: true
   changed_when: false
   when:
     - ansible_pkg_mgr != "zypper"
+
+- name: Update package cache (Zypper only)
+  changed_when: false
+  check_mode: false
+  command:
+    cmd: "zypper refresh"
+    warn: false
 
 - name: Check for updates
   block:
@@ -23,13 +30,49 @@
       changed_when: true
       when: (ansible_pkg_mgr in ["yum", "dnf"] and "Available Upgrades" in upgradeable_packages.stdout_lines) or
             (ansible_pkg_mgr == "apt" and upgradeable_packages.stdout_lines[1] is defined) or
-            (ansible_pkg_mgr == "pacman" and upgradeable_packages.stdout_lines is defined) or
+            (ansible_pkg_mgr == "pacman" and upgradeable_packages.stdout_lines[1] is defined) or
             (ansible_pkg_mgr == "zypper" and "No updates found." not in upgradeable_packages.stdout_lines) or
             (ansible_pkg_mgr == "apk" and upgradeable_packages.stdout_lines[1] is defined)
   when: mode in ["full", "check"]
 
-- name: update all packages
-  package:
-    name: "*"
-    state: latest  # noqa package-latest
+- name: Update packages
   when: mode in ["full", "run"]
+  block:
+    - name: Update packages (dnf/yum)
+      when: ansible_pkg_mgr in [ "yum", "dnf" ]
+      package:
+        name: "*"
+        state: latest  # noqa package-latest
+
+    - name: Autoremove (dnf/yum)
+      when:
+        - ansible_pkg_mgr in [ "yum", "dnf" ]
+        - update_dnf_autoremove is defined and update_dnf_autoremove | bool or
+          update_dnf_autoremove is not defined and update_autoremove | bool
+      package:
+        autoremove: "{{ update_dnf_autoremove | default(update_autoremove) }}"
+
+    - name: Update packages (apt)
+      when: ansible_pkg_mgr == "apt"
+      apt:
+        upgrade: "{{ update_apt_upgrade_type }}"
+
+    - name: Autoremove (apt)
+      when:
+        - ansible_pkg_mgr == "apt"
+        - update_apt_autoremove is defined and update_apt_autoremove | bool or
+          update_apt_autoremove is not defined and update_autoremove | bool
+      apt:
+        autoremove: "{{ update_apt_autoremove | default(update_autoremove) }}"
+
+    - name: Update packages (pacman)
+      when: ansible_pkg_mgr == "pacman"
+      pacman:
+        upgrade: true
+
+    - name: Update packages (zypper)
+      when: ansible_pkg_mgr == "zypper"
+      community.general.zypper:
+        name: "*"
+        state: "{{ update_zypper_state }}"
+        allow_vendor_change: "{{ update_zypper_allow_vendor_change }}"
