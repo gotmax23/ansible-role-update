@@ -1,13 +1,13 @@
 ---
 # tasks file for update
 - name: Update package cache
+  changed_when: false
+  when: ansible_pkg_mgr != "zypper"
   package:
     update_cache: true
-  changed_when: false
-  when:
-    - ansible_pkg_mgr != "zypper"
 
 - name: Update package cache (Zypper only)
+  when: ansible_pkg_mgr == "zypper"
   changed_when: false
   check_mode: false
   command:
@@ -15,25 +15,25 @@
     warn: false
 
 - name: Check for updates
+  when: mode in ["full", "check"]
   block:
     - name: List upgradeable packages
-      command:
-        cmd: "{{ update_list_upgradeable_packages_cmd }}"
-        warn: false
       changed_when: false
       failed_when: false
       register: upgradeable_packages
+      command:
+        cmd: "{{ update_list_upgradeable_packages_cmd }}"
+        warn: false
 
     - name: Print upgradeable_packages
-      debug:
-        msg: "{{ upgradeable_packages['stdout'] }}"
       changed_when: true
       when: (ansible_pkg_mgr in ["yum", "dnf"] and "Available Upgrades" in upgradeable_packages.stdout_lines) or
             (ansible_pkg_mgr == "apt" and upgradeable_packages.stdout_lines[1] is defined) or
             (ansible_pkg_mgr == "pacman" and upgradeable_packages.stdout_lines[1] is defined) or
             (ansible_pkg_mgr == "zypper" and "No updates found." not in upgradeable_packages.stdout_lines) or
             (ansible_pkg_mgr == "apk" and upgradeable_packages.stdout_lines[1] is defined)
-  when: mode in ["full", "check"]
+      debug:
+        msg: "{{ upgradeable_packages['stdout'] }}"
 
 - name: Update packages
   when: mode in ["full", "run"]
