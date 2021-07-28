@@ -2,7 +2,7 @@
 #
 # Ansible managed
 #
-name: Run Molecule tests and linting
+name: Lint code and run Molecule tests
 
 'on':
   push:
