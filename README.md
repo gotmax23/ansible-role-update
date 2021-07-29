@@ -1,38 +1,85 @@
-Role Name
-=========
+# Ansible Role: update
+[![MIT Licensed][badge-license]][link-license]
+[![Role gotmax23.update][badge-role]][link-galaxy]
+[![Galaxy Role Quality][badge-quality]][link-galaxy]
+[![Galaxy Role Downloads][badge-downloads]][link-galaxy]
+[![Github Actions CI][badge-ci]][link-ci]
 
-A brief description of the role goes here.
+This is an Ansible role that checks for and installs system updates. It also has to the option to print upgradeable packages without actually upgrading them.
 
-Requirements
-------------
+## Requirements
+For right now, I only test this role using the latest release of the `ansible` pip package, which includes all the collections that are no longer part of `ansible-core`. This is the supported method. However, if you choose to use `ansible-core` or still use Ansible 2.9, you must manually install the following collections:
+- community.general
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+## Role Variables
 
-Role Variables
---------------
+Here are this role's variables and their default values, as set in [`defaults/main.yml`][link-defaults]. If you'd like, you may change them to customize this role's behavior.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+``` yaml
+---
+# defaults file for update
 
-Dependencies
-------------
+# Options:
+# - `check` to print upgradeable packages without upgrading them
+# - `full` to print upgradeable packages and then upgrade them
+# - `run` to update all packages without listing them first
+mode: full
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+# This option sets the apt upgrade type. Available options are `dist`, `full`, `safe`, and `true`.
+# See the ansible.builtin.apt module documentation for more information.
+update_apt_upgrade_type: true
 
-Example Playbook
-----------------
+# This options sets the state key for the zypper module.
+# Choose `latest` for a regular upgrade or `dist-upgrade` for the equivalent for `zypper dup`.
+# See the community.general.zypper module documentation for more information.
+update_zypper_state: latest
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+# This option dictates whether zypper should allow a vendor change
+update_zypper_allow_vendor_change: false
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+# Whether to autoremove unneeded dependencies. This only applies to dnf, yum, and apt
+update_autoremove: false
 
-License
--------
+```
 
-BSD
+## Example Playbook
+``` yaml
+---
+- name: Converge
+  hosts: all
+  become: true
+  tasks:
+    - name: "Include update"
+      include_role:
+        name: gotmax23.update
 
-Author Information
-------------------
+```
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+## Compatibility
+This role is compatible with the following distros:
+|distro|versions|
+|------|--------|
+|Archlinux|any|
+|Debian|buster, bullseye|
+|EL|7, 8|
+|Fedora|33, 34, 35|
+|opensuse|15.2, 15.3, tumbleweed|
+|Ubuntu|bionic, focal, hirsute|
+
+## License
+[MIT][link-license]
+
+## Author
+Maxwell G (@gotmax23)
+
+[badge-license]: https://img.shields.io/github/license/gotmax23/ansible-role-update.svg
+[link-license]: https://github.com/gotmax23/ansible-role-update/blob/main/LICENSE
+[badge-role]: https://img.shields.io/ansible/role/.svg
+[link-galaxy]: https://galaxy.ansible.com/gotmax23/update
+[badge-quality]: https://img.shields.io/ansible/quality/.svg
+[badge-downloads]: https://img.shields.io/ansible/role/d/.svg
+[badge-version]: https://img.shields.io/github/release/gotmax23/ansible-role-update/svg
+[link-version]: https://github.com/gotmax23/ansible-role-update/releases
+[badge-ci]: https://github.com/gotmax23/ansible-role-update/actions/workflows/molecule.yml/badge.svg?branch=main
+[link-ci]: https://github.com/gotmax23/ansible-role-update/actions/workflows/molecule.yml
+[link-defaults]: https://github.com/gotmax23/ansible-role-update/blob/main/defaults.yml
