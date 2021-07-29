@@ -65,7 +65,7 @@
 
     - name: Update packages (pacman)
       when: ansible_pkg_mgr == "pacman"
-      pacman:
+      community.general.pacman:
         upgrade: true
 
     - name: Update packages (zypper)
