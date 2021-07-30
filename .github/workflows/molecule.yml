@@ -92,6 +92,18 @@ jobs:
         with:
           python-version: "3.9"
 
+      - name: Generate cache keys
+        id: keys
+        run: |
+          echo ::set-output name=pip_cache_dir::$(pip cache dir)
+          echo ::set-output name=date::$(date +%Y_%g)
+
+      - name: Pip Cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.keys.outputs.pip_cache_dir }}
+          key: ansible-pip-${{ steps.keys.outputs.date }}
+
       - name: Install pip packages
         run: |
           pip3 install -U pip
