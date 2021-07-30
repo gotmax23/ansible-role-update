@@ -1,5 +1,5 @@
 ---
-name: Generate pip3 cache
+name: Generate pip cache
 
 'on':
   workflow_dispatch:
@@ -29,5 +29,8 @@ jobs:
             ansible-pip-
 
       - name: Install all needed pip packages
-        run: pip install molecule molecule-podman ansible-core ansible yamllint ansible-lint
+        run: |
+          pip3 install -U pip
+          pip3 install wheel
+          pip3 install molecule molecule-podman ansible-core ansible yamllint ansible-lint
 
