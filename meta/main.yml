@@ -24,19 +24,13 @@ galaxy_info:
         - 8
     - name: Fedora
       versions:
-        - 33
-        - 34
-        - 35
+        - all
     - name: opensuse
       versions:
-        - 15.2
-        - 15.3
-        - tumbleweed
+        - all
     - name: Ubuntu
       versions:
-        - bionic
-        - focal
-        - hirsute
+        - all
 
   galaxy_tags:
     - update
