@@ -74,10 +74,10 @@ Maxwell G (@gotmax23)
 
 [badge-license]: https://img.shields.io/github/license/gotmax23/ansible-role-update.svg
 [link-license]: https://github.com/gotmax23/ansible-role-update/blob/main/LICENSE
-[badge-role]: https://img.shields.io/ansible/role/.svg
+[badge-role]: https://img.shields.io/ansible/role/55837.svg
 [link-galaxy]: https://galaxy.ansible.com/gotmax23/update
-[badge-quality]: https://img.shields.io/ansible/quality/.svg
-[badge-downloads]: https://img.shields.io/ansible/role/d/.svg
+[badge-quality]: https://img.shields.io/ansible/quality/55837.svg
+[badge-downloads]: https://img.shields.io/ansible/role/d/55837.svg
 [badge-version]: https://img.shields.io/github/release/gotmax23/ansible-role-update/svg
 [link-version]: https://github.com/gotmax23/ansible-role-update/releases
 [badge-ci]: https://github.com/gotmax23/ansible-role-update/actions/workflows/molecule.yml/badge.svg?branch=main
