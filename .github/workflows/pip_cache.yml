@@ -18,7 +18,7 @@ jobs:
         id: keys
         run: |
           echo ::set-output name=pip_cache_dir::$(pip cache dir)
-          echo ::set-output name=date::$(2021_21)
+          echo ::set-output name=date::$(date +%Y_%g)
 
       - name: Pip Cache
         uses: actions/cache@v2
