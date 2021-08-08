@@ -5,6 +5,7 @@ name: Generate pip cache
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * 0"
+
 jobs:
   cache:
     runs-on: ubuntu-20.04
@@ -18,19 +19,16 @@ jobs:
         id: keys
         run: |
           echo ::set-output name=pip_cache_dir::$(pip cache dir)
-          echo ::set-output name=date::$(2021_21)
+          echo ::set-output name=date::$(date +%Y_%g)
 
       - name: Pip Cache
         uses: actions/cache@v2
         with:
           path: ${{ steps.keys.outputs.pip_cache_dir }}
           key: ansible-pip-${{ steps.keys.outputs.date }}
-          restore-keys: |
-            ansible-pip-
 
       - name: Install all needed pip packages
         run: |
           pip3 install -U pip
           pip3 install wheel
           pip3 install molecule molecule-podman ansible-core ansible yamllint ansible-lint
-
