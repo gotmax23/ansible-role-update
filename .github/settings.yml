@@ -3,6 +3,6 @@
 # Ansible managed
 #
 repository:
-  description: This is an Ansible role that checks for and installs system updates. It also has to the option to print upgradeable packages without actually upgrading them.
+  description: Ansible role to check and optionally installs system updates. It also has to the option to print upgradeable packages without actually upgrading them.
   homepage: "https://galaxy.ansible.com/gotmax23/update"
   topics: update, upgrade, ansible, molecule, ansible-role, role

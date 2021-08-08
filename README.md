@@ -8,7 +8,7 @@
 [![Github Actions Molecule workflow status][badge-molecule-workflow]][link-molecule-workflow]
 [![Github Actions Galaxy workflow status][badge-galaxy-workflow]][link-galaxy-workflow]
 
-This is an Ansible role that checks for and installs system updates. It also has to the option to print upgradeable packages without actually upgrading them.
+Ansible role to check and optionally installs system updates. It also has to the option to print upgradeable packages without actually upgrading them.
 
 ## Requirements
 For right now, I only test this role using the latest release of the `ansible` pip package, which includes all the collections that are no longer part of `ansible-core`. This is the supported method. However, if you choose to use `ansible-core` or still use Ansible 2.9, you must manually install the following collections:
