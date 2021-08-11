@@ -4,7 +4,7 @@ galaxy_info:
 
   author: gotmax23
 
-  description: Ansible role to check and optionally installs system updates. It also has to the option to print upgradeable packages without actually upgrading them.
+  description: Ansible role that checks for and optionally installs system updates. It also has to the option to print upgradeable packages without actually upgrading them.
 
   license: MIT
 
