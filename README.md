@@ -30,12 +30,12 @@ Here are this role's variables and their default values, as set in [`defaults/ma
 mode: full
 
 # This option sets the apt upgrade type. Available options are `dist`, `full`, `safe`, and `true`.
-# See the ansible.builtin.apt module documentation for more information.
+# See the [ansible.builtin.apt][1] module documentation for more information.
 update_apt_upgrade_type: true
 
 # This options sets the state key for the zypper module.
 # Choose `latest` for a regular upgrade or `dist-upgrade` for the equivalent for `zypper dup`.
-# See the community.general.zypper module documentation for more information.
+# See the [community.general.zypper][2] module documentation for more information.
 update_zypper_state: latest
 
 # This option dictates whether zypper should allow a vendor change
@@ -45,6 +45,10 @@ update_zypper_allow_vendor_change: false
 update_autoremove: false
 
 ```
+
+\[1]: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
+\[2]: https://docs.ansible.com/ansible/latest/collections/community/general/zypper_module.html
+
 
 ## Example Playbook
 ``` yaml
