@@ -13,67 +13,67 @@ lint: |
 driver:
   name: podman
 platforms:
-  - name: "update-archlinux-any"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-archlinux-any"
     image: "quay.io/gotmax23/archlinux-systemd:any"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-debian-buster"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-debian-buster"
     image: "quay.io/gotmax23/debian-systemd:buster"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-debian-bullseye"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-debian-bullseye"
     image: "quay.io/gotmax23/debian-systemd:bullseye"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-el-8"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-el-8"
     image: "quay.io/gotmax23/el-systemd:8"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-fedora-33"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-fedora-33"
     image: "quay.io/gotmax23/fedora-systemd:33"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-fedora-34"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-fedora-34"
     image: "quay.io/gotmax23/fedora-systemd:34"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-fedora-35"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-fedora-35"
     image: "quay.io/gotmax23/fedora-systemd:35"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-opensuse-15.2"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-opensuse-15.2"
     image: "quay.io/gotmax23/opensuse-systemd:15.2"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-opensuse-15.3"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-opensuse-15.3"
     image: "quay.io/gotmax23/opensuse-systemd:15.3"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-opensuse-tumbleweed"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-opensuse-tumbleweed"
     image: "quay.io/gotmax23/opensuse-systemd:tumbleweed"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-ubuntu-bionic"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-ubuntu-bionic"
     image: "quay.io/gotmax23/ubuntu-systemd:bionic"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-ubuntu-focal"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-ubuntu-focal"
     image: "quay.io/gotmax23/ubuntu-systemd:focal"
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-ubuntu-hirsute"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-ubuntu-hirsute"
     image: "quay.io/gotmax23/ubuntu-systemd:hirsute"
     command: ""
     pre_build_image: true
