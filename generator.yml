@@ -3,6 +3,10 @@
   hosts: localhost
   gather_facts: false
 
+  vars:
+    generator_molecule_workflow_cron: "15 0 * * 0"
+    generator_molecule_workflow_cron_random: false
+
   roles:
     - gotmax23.generator
 
