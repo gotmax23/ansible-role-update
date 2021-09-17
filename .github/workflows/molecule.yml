@@ -55,8 +55,8 @@ jobs:
 
   test:
     runs-on: ubuntu-20.04
-    # needs:
-    #   - lint
+    needs:
+      - lint
     strategy:
       fail-fast: false
       matrix:
