@@ -3,14 +3,14 @@
 - name: Update package cache
   changed_when: false
   when: ansible_pkg_mgr != "zypper"
-  package:
+  ansible.builtin.package:
     update_cache: true
 
 - name: Update package cache (Zypper only)
   when: ansible_pkg_mgr == "zypper"
   changed_when: false
   check_mode: false
-  command:
+  ansible.builtin.command:
     cmd: "zypper refresh"
     warn: false
 
@@ -21,7 +21,7 @@
       changed_when: false
       failed_when: false
       register: upgradeable_packages
-      command:
+      ansible.builtin.command:
         cmd: "{{ update_list_upgradeable_packages_cmd }}"
         warn: false
 
@@ -32,7 +32,7 @@
             (ansible_pkg_mgr == "pacman" and upgradeable_packages.stdout_lines[1] is defined) or
             (ansible_pkg_mgr == "zypper" and "No updates found." not in upgradeable_packages.stdout_lines) or
             (ansible_pkg_mgr == "apk" and upgradeable_packages.stdout_lines[1] is defined)
-      debug:
+      ansible.builtin.debug:
         msg: "{{ upgradeable_packages['stdout'] }}"
 
 - name: Update packages
@@ -40,7 +40,7 @@
   block:
     - name: Update packages (dnf/yum)
       when: ansible_pkg_mgr in [ "yum", "dnf" ]
-      package:
+      ansible.builtin.package:
         name: "*"
         state: latest  # noqa package-latest
 
@@ -48,19 +48,19 @@
       when:
         - ansible_pkg_mgr in [ "yum", "dnf" ]
         - update_autoremove | bool
-      package:
+      ansible.builtin.package:
         autoremove: "{{ update_dnf_autoremove | default(update_autoremove) }}"
 
     - name: Update packages (apt)
       when: ansible_pkg_mgr == "apt"
-      apt:
+      ansible.builtin.apt:
         upgrade: "{{ update_apt_upgrade_type }}"
 
     - name: Autoremove (apt)
       when:
         - ansible_pkg_mgr == "apt"
         - update_autoremove | bool
-      apt:
+      ansible.builtin.apt:
         autoremove: "{{ update_autoremove }}"
 
     - name: Update packages (pacman)
