@@ -12,6 +12,7 @@ lint: |
   ansible-lint
 driver:
   name: docker
+
 platforms:
   - name: "update-${MOLECULE_SCENARIO_NAME}-${image:-debian}-${tag:-latest}${TOX_ENVNAME}"
     image: "quay.io/gotmax23/${image:-debian}-systemd:${tag:-latest}"

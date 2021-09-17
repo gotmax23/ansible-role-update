@@ -59,7 +59,7 @@ update_autoremove: false
   become: true
   tasks:
     - name: "Include update"
-      include_role:
+      ansible.builtin.include_role:
         name: gotmax23.update
 
 ```

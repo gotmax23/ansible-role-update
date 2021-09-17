@@ -12,6 +12,7 @@ lint: |
   ansible-lint
 driver:
   name: docker
+
 platforms:
   - name: "update-${MOLECULE_SCENARIO_NAME}-archlinux-any"
     image: "quay.io/gotmax23/archlinux-systemd:any"
