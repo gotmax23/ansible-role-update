@@ -52,6 +52,18 @@ platforms:
       - /var/lib/journal
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: "update-${MOLECULE_SCENARIO_NAME}-debian-bookworm"
+    image: "quay.io/gotmax23/debian-systemd:bookworm"
+    command: ""
+    pre_build_image: true
+    tmpfs:
+      - /run
+      - /run/lock
+      - /tmp
+      - /sys/fs/cgroup/systemd
+      - /var/lib/journal
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
   - name: "update-${MOLECULE_SCENARIO_NAME}-el-8"
     image: "quay.io/gotmax23/el-systemd:8"
     command: ""

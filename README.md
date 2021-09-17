@@ -69,7 +69,7 @@ This role is compatible with the following distros:
 |distro|versions|
 |------|--------|
 |Archlinux|any|
-|Debian|buster, bullseye|
+|Debian|buster, bullseye, bookworm|
 |EL|7, 8|
 |Fedora|33, 34, 35|
 |opensuse|15.2, 15.3, tumbleweed|

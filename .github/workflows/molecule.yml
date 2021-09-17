@@ -67,6 +67,8 @@ jobs:
             tag: "buster"
           - image: "debian"
             tag: "bullseye"
+          - image: "debian"
+            tag: "bookworm"
           - image: "el"
             tag: "7"
           - image: "el"
