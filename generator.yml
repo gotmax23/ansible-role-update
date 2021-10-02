@@ -1,6 +1,8 @@
+#!/usr/bin/env ansible-playbook
 ---
-- name: Test ansible-role-generator
+- name: Generate files
   hosts: localhost
+  connection: local
   gather_facts: false
 
   vars:
