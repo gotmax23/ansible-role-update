@@ -66,6 +66,7 @@ update_autoremove: false
 
 ## Compatibility
 This role is compatible with the following distros:
+
 |distro|versions|
 |------|--------|
 |Archlinux|any|
