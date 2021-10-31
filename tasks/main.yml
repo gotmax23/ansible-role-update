@@ -44,24 +44,10 @@
         name: "*"
         state: latest  # noqa package-latest
 
-    - name: Autoremove (dnf/yum)
-      when:
-        - ansible_pkg_mgr in [ "yum", "dnf" ]
-        - update_autoremove | bool
-      ansible.builtin.package:
-        autoremove: "{{ update_dnf_autoremove | default(update_autoremove) }}"
-
     - name: Update packages (apt)
       when: ansible_pkg_mgr == "apt"
       ansible.builtin.apt:
         upgrade: "{{ update_apt_upgrade_type }}"
-
-    - name: Autoremove (apt)
-      when:
-        - ansible_pkg_mgr == "apt"
-        - update_autoremove | bool
-      ansible.builtin.apt:
-        autoremove: "{{ update_autoremove }}"
 
     - name: Update packages (pacman)
       when: ansible_pkg_mgr == "pacman"
@@ -74,3 +60,10 @@
         name: "*"
         state: "{{ update_zypper_state }}"
         allow_vendor_change: "{{ update_zypper_allow_vendor_change }}"
+
+    - name: Autoremove
+      when:
+        - ansible_pkg_mgr in [ "yum", "dnf", "apt" ]
+        - update_autoremove | bool
+      ansible.builtin.package:
+        autoremove: true
