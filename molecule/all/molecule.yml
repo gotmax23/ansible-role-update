@@ -41,11 +41,6 @@ platforms:
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-${MOLECULE_SCENARIO_NAME}-fedora-33"
-    image: "quay.io/gotmax23/fedora-systemd:33"
-    command: ""
-    pre_build_image: true
-    systemd: true
   - name: "update-${MOLECULE_SCENARIO_NAME}-fedora-34"
     image: "quay.io/gotmax23/fedora-systemd:34"
     command: ""
@@ -53,6 +48,11 @@ platforms:
     systemd: true
   - name: "update-${MOLECULE_SCENARIO_NAME}-fedora-35"
     image: "quay.io/gotmax23/fedora-systemd:35"
+    command: ""
+    pre_build_image: true
+    systemd: true
+  - name: "update-${MOLECULE_SCENARIO_NAME}-fedora-36"
+    image: "quay.io/gotmax23/fedora-systemd:36"
     command: ""
     pre_build_image: true
     systemd: true
@@ -78,11 +78,6 @@ platforms:
     systemd: true
   - name: "update-${MOLECULE_SCENARIO_NAME}-ubuntu-focal"
     image: "quay.io/gotmax23/ubuntu-systemd:focal"
-    command: ""
-    pre_build_image: true
-    systemd: true
-  - name: "update-${MOLECULE_SCENARIO_NAME}-ubuntu-hirsute"
-    image: "quay.io/gotmax23/ubuntu-systemd:hirsute"
     command: ""
     pre_build_image: true
     systemd: true

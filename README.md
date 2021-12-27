@@ -21,22 +21,26 @@ Ansible role that checks for and optionally installs system updates. It also has
 This role depends on certain collections that are not included in ansible-core.
 
 
-To install this role's requirements, create a `requirements.yml` file with the contents below and run the following commands:
-
-``` shell
-# ansible-base/ansible-core 2.10 and above
-ansible-galaxy install -r requirements.yml
-
-# ansible 2.9
-ansible-galaxy collection install -r requirements.yml
-```
+To install this role's requirements, create a `requirements.yml` file with the following contents:
 
 ``` yaml
-# requirements.yml
 ---
 collections:
   - name: community.general
 
+```
+
+Then, if you are using ansible-base/ansible-core 2.10 or later, run this command.
+
+``` shell
+ansible-galaxy install -r requirements.yml
+```
+
+
+If you are still using Ansible 2.9, run this command, instead.
+
+``` shell
+ansible-galaxy collection install -r requirements.yml
 ```
 
 ## Role Variables
@@ -89,6 +93,8 @@ update_autoremove: false
 ```
 
 ## Compatibility
+This role is tested using the latest version of ansible-core and the latest version of the collections from Ansible Galaxy. This is the only version of Ansible that this role officially supports. Best effort support is provided for other versions.
+
 This role is compatible with the following distros:
 
 |distro|versions|
@@ -96,9 +102,9 @@ This role is compatible with the following distros:
 |Archlinux|any|
 |Debian|buster, bullseye, bookworm|
 |EL|7, 8|
-|Fedora|33, 34, 35|
+|Fedora|34, 35, 36|
 |opensuse|15.2, 15.3, tumbleweed|
-|Ubuntu|bionic, focal, hirsute|
+|Ubuntu|bionic, focal|
 
 ## License
 [MIT][link-license]

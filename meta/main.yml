@@ -25,9 +25,9 @@ galaxy_info:
         - 8
     - name: Fedora
       versions:
-        - 33
         - 34
         - 35
+        - 36
     - name: opensuse
       versions:
         - all
@@ -35,7 +35,6 @@ galaxy_info:
       versions:
         - bionic
         - focal
-        - hirsute
 
   galaxy_tags:
     - update
