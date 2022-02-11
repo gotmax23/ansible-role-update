@@ -26,7 +26,6 @@
         warn: false
 
     - name: Print upgradeable_packages
-      changed_when: true
       when: (ansible_pkg_mgr in ["yum", "dnf"] and "Available Upgrades" in upgradeable_packages.stdout_lines) or
             (ansible_pkg_mgr == "apt" and upgradeable_packages.stdout_lines[1] is defined) or
             (ansible_pkg_mgr == "pacman" and upgradeable_packages.stdout_lines[1] is defined) or
