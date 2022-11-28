@@ -15,7 +15,7 @@ name: Lint code and run Molecule tests
       - .github/settings.yml
   workflow_dispatch:
   schedule:
-    - cron: "15 0 * * 0"
+    - cron: "15 0 14 * *"
 
 defaults:
   run:
