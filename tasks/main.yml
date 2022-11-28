@@ -12,7 +12,6 @@
   check_mode: false
   ansible.builtin.command:
     cmd: "zypper refresh"
-    warn: false
 
 - name: Check for updates
   when: mode in ["full", "check"]
@@ -23,7 +22,6 @@
       register: upgradeable_packages
       ansible.builtin.command:
         cmd: "{{ update_list_upgradeable_packages_cmd }}"
-        warn: false
 
     - name: Print upgradeable_packages
       when: (ansible_pkg_mgr in ["yum", "dnf"] and "Available Upgrades" in upgradeable_packages.stdout_lines) or
