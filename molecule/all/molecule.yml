@@ -1,7 +1,4 @@
 ---
-#
-# Ansible managed
-#
 dependency:
   name: galaxy
   options:
@@ -21,16 +18,6 @@ platforms:
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-${MOLECULE_SCENARIO_NAME}-debian-buster"
-    image: "quay.io/gotmax23/debian-systemd:buster"
-    command: ""
-    pre_build_image: true
-    systemd: true
-  - name: "update-${MOLECULE_SCENARIO_NAME}-debian-bullseye"
-    image: "quay.io/gotmax23/debian-systemd:bullseye"
-    command: ""
-    pre_build_image: true
-    systemd: true
   - name: "update-${MOLECULE_SCENARIO_NAME}-debian-bookworm"
     image: "quay.io/gotmax23/debian-systemd:bookworm"
     command: ""
@@ -41,33 +28,13 @@ platforms:
     command: ""
     pre_build_image: true
     systemd: true
-  - name: "update-${MOLECULE_SCENARIO_NAME}-fedora-34"
-    image: "quay.io/gotmax23/fedora-systemd:34"
-    command: ""
-    pre_build_image: true
-    systemd: true
-  - name: "update-${MOLECULE_SCENARIO_NAME}-fedora-35"
-    image: "quay.io/gotmax23/fedora-systemd:35"
-    command: ""
-    pre_build_image: true
-    systemd: true
-  - name: "update-${MOLECULE_SCENARIO_NAME}-fedora-36"
-    image: "quay.io/gotmax23/fedora-systemd:36"
+  - name: "update-${MOLECULE_SCENARIO_NAME}-fedora-37"
+    image: "quay.io/gotmax23/fedora-systemd:37"
     command: ""
     pre_build_image: true
     systemd: true
   - name: "update-${MOLECULE_SCENARIO_NAME}-opensuse-15.3"
     image: "quay.io/gotmax23/opensuse-systemd:15.3"
-    command: ""
-    pre_build_image: true
-    systemd: true
-  - name: "update-${MOLECULE_SCENARIO_NAME}-opensuse-tumbleweed"
-    image: "quay.io/gotmax23/opensuse-systemd:tumbleweed"
-    command: ""
-    pre_build_image: true
-    systemd: true
-  - name: "update-${MOLECULE_SCENARIO_NAME}-ubuntu-bionic"
-    image: "quay.io/gotmax23/ubuntu-systemd:bionic"
     command: ""
     pre_build_image: true
     systemd: true
