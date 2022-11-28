@@ -20,6 +20,7 @@
       changed_when: false
       failed_when: false
       register: upgradeable_packages
+      check_mode: false
       ansible.builtin.command:
         cmd: "{{ update_list_upgradeable_packages_cmd }}"
 
