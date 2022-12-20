@@ -1,8 +1,9 @@
 ---
 # tasks file for update
 - name: Update package cache
-  changed_when: false
   when: ansible_pkg_mgr != "zypper"
+  changed_when: false
+  check_mode: false
   ansible.builtin.package:
     update_cache: true
 
