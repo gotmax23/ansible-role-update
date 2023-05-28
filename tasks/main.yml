@@ -26,7 +26,7 @@
         cmd: "{{ update_list_upgradeable_packages_cmd }}"
 
     - name: Print upgradeable_packages
-      when: (ansible_pkg_mgr in ["yum", "dnf"] and "Available Upgrades" in upgradeable_packages.stdout_lines) or
+      when: (ansible_pkg_mgr in ["yum", "dnf", "dnf5"] and "Available Upgrades" in upgradeable_packages.stdout_lines) or
             (ansible_pkg_mgr == "apt" and upgradeable_packages.stdout_lines[1] is defined) or
             (ansible_pkg_mgr == "pacman" and upgradeable_packages.stdout_lines[1] is defined) or
             (ansible_pkg_mgr == "zypper" and "No updates found." not in upgradeable_packages.stdout_lines) or

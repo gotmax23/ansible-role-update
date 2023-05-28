@@ -3,6 +3,7 @@
 _update_list_upgradeable_packages_cmd:
   apt: apt list --upgradeable
   dnf: dnf list --upgrades
+  dnf5: dnf5 list --upgrades -q
   yum: yum list --upgrades
   pacman: pacman -Qu
   zypper: zypper list-updates
