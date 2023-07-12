@@ -21,8 +21,6 @@ defaults:
 jobs:
   test:
     runs-on: ubuntu-22.04
-    needs:
-      - lint
     strategy:
       fail-fast: false
       matrix:
