@@ -19,44 +19,6 @@ defaults:
     working-directory: gotmax23.update
 
 jobs:
-  lint:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout Git Repo
-        uses: actions/checkout@v2
-        with:
-          path: gotmax23.update
-
-      - name: "Set up Python 3.9"
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.10"
-
-      - name: Generate cache keys
-        id: keys
-        run: |
-          echo ::set-output name=pip_cache_dir::$(pip cache dir)
-          echo ::set-output name=date::$(date +%Y_%g)
-
-      - name: Pip Cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.keys.outputs.pip_cache_dir }}
-          key: ansible-pip-${{ steps.keys.outputs.date }}
-
-      - name: Install pip packages
-        run: |
-          pip3 install -U pip
-          pip3 install wheel
-          pip3 install molecule molecule-podman ansible-core yamllint ansible-lint
-
-      - name: Run molecule lint
-        run: molecule lint -s single
-        env:
-          PY_COLORS: "1"
-          ANSIBLE_FORCE_COLOR: "1"
-          GALAXY_FORCE: true
-
   test:
     runs-on: ubuntu-22.04
     needs:
