@@ -38,7 +38,7 @@
   when: mode in ["full", "run"]
   block:
     - name: Update packages (dnf/yum)
-      when: ansible_pkg_mgr in [ "yum", "dnf" ]
+      when: ansible_pkg_mgr in [ "yum", "dnf", "dnf5" ]
       ansible.builtin.package:
         name: "*"
         state: latest  # noqa package-latest
